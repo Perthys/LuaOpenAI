@@ -1,6 +1,6 @@
 # LuaOpenAI
 ```lua
-local OpenAI = loadstring()();
+local OpenAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/LuaOpenAI/main/main.lua'))()
 
 local Configuration = OpenAI.Configuration.new({
     Organization = "";
