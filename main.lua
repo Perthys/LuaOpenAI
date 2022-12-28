@@ -2,7 +2,10 @@ local HttpService = game:GetService("HttpService");
 
 local OpenAI = {
     BaseURL = "https://api.openai.com/v1/%s";
+    Utils = {};
 };
+
+local Utils = OpenAI.Utils;
 
 local function Merge(Seperator, ...)
     Seperator = Seperator or "/"
@@ -10,6 +13,9 @@ local function Merge(Seperator, ...)
     local Strings = {...};
     return table.concat(Strings, Seperator)
 end
+
+Utils.Merge = Merge;
+Utils.Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbberrys/LuaScripts/main/TableDumper.lua'))();
 
 local URL = {} URL.__index = URL;
 
