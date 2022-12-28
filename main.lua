@@ -50,7 +50,7 @@ function OpenAIAPI:MakeAuthedRequest(Data)
 
     local Response = syn.request(Data)
     
-    return Response.StatusCode == 200 and Response.Success and HttpService:JSONDecode(Response.Body) or error (Response.StatusMessage)
+    return Response.StatusCode == 200 and Response.Success and HttpService:JSONDecode(Response.Body) or error (("[Request Error] Code: %s Status: %s"):format(Response.StatusCode, Response.StatusMessage)) , Response
 end
 
 function OpenAIAPI:ListModels()
