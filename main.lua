@@ -24,6 +24,7 @@ function URL.new(...)
 end
 
 OpenAI.URL = URL;
+print = function() end
 
 local Configuration = {} Configuration.__index = Configuration;
 
@@ -292,7 +293,7 @@ function OpenAIAPI:DeleteModel(Model)
     return Response;
 end
 
-function OpenAIAPI:CreateModeration()
+function OpenAIAPI:CreateModeration(Body)
     local EndPoint = URL.new("moderations");
     print(EndPoint);
     local Response = self:MakeAuthedRequest({
