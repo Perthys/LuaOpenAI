@@ -49,6 +49,8 @@ function OpenAIAPI:MakeAuthedRequest(Data)
     
     Data.Headers["Authorization"] = ("Bearer %s"):format(self.APIKey);
     Data.Body = Data.Body and HttpService:JSONEncode(Data.Body)
+    
+    print(Data.Body)
     print(Utils.Dump(Data))
 
     local Response = syn.request(Data)
@@ -99,7 +101,7 @@ function OpenAIAPI:CreateCompletion(Body)
     return Response;
 end
 
-function OpenAIAPI:CreateEdit()
+function OpenAIAPI:CreateEdit(Body)
     local EndPoint = URL.new("edits");
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
@@ -135,7 +137,7 @@ function OpenAIAPI:CreateImageVariation()
     return error("[Unimplemented] Unable to emulate html form.");
 end
 
-function OpenAIAPI:CreateEmbedding()
+function OpenAIAPI:CreateEmbedding(Body)
     local EndPoint = URL.new("embeddings");
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
@@ -149,7 +151,7 @@ function OpenAIAPI:CreateEmbedding()
     return Response;
 end
 
-function OpenAIAPI:ListFiles()
+function OpenAIAPI:ListFiles(Body)
     local EndPoint = URL.new("files");
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
@@ -296,6 +298,7 @@ end
 function OpenAIAPI:CreateModeration(Body)
     local EndPoint = URL.new("moderations");
     print(EndPoint);
+    
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
         Method = "POST";
@@ -304,6 +307,8 @@ function OpenAIAPI:CreateModeration(Body)
         };
         Body = Body;
     })
+    
+    print(Utils.Dump(Body))
 
     return Response;
 end
