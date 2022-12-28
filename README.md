@@ -1,34 +1,29 @@
 # LuaOpenAI
 ```lua
 local OpenAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/LuaOpenAI/main/main.lua'))()
+local Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbberrys/LuaScripts/main/TableDumper.lua'))()
 
-local Configuration = OpenAI.Configuration.new({
-    Organization = "";
-    APIKey = "";
+local Configuration, API = OpenAI.Configuration, OpenAI.OpenAIAPI
+
+local Config = Configuration.new({
+    APIKey = "sk-__________________________________________";
 })
 
-local OpenAIApi = OpenAI.OpenAIApi.new(Configuration);
+local OpenAIInstance = API.new(Config);
 
-local Response = OpenAIApi:ListEngines();
-local Response = OpenAIApi:RetrieveModel()
-local Response = OpenAIApi:CreateCompletion({
-    
-  Model = "text-davinci-002",
-  Prompt = "Say this is a test",
-  MaxTokens = 6,
-  Temperature = 0,
+local Response = OpenAIInstance:CreateCompletion({
+    ["model"] = "text-davinci-003",
+    ["prompt"] = "hello",
+    ["temperature"] = 0.8,
+    ["max_tokens"] = 40,
+    ["top_p"] = 1,
+    ["frequency_penalty"] = 0,
+    ["presence_penalty"] = 0
 });
 
-local Response = OpenAIApi:CreateEdit({
-  Model = "text-davinci-edit-001",
-  Input = "What day of the wek is it?",
-  Instruction = "Fix the spelling mistakes",
-});
-
-local Response = OpenAIApi:CreateEmbedding({
-  Model = "text-similarity-babbage-001",
-  Input = "The food was delicious and the waiter...",
-});
+print(Dump(Response))
 
 
 ```
+
+#### Most if not all endpoints are inside of the api
