@@ -48,6 +48,7 @@ function OpenAIAPI:MakeAuthedRequest(Data)
     
     Data.Headers["Authorization"] = ("Bearer %s"):format(self.APIKey);
     Data.Body = Data.Body and HttpService:JSONEncode(Data.Body)
+    print(Utils.Dump(Data))
 
     local Response = syn.request(Data)
     
