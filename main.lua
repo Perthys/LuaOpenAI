@@ -294,7 +294,7 @@ function OpenAIAPI:CreateModeration()
     local EndPoint = URL.new("moderations");
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
-        Method = "GET";
+        Method = "POST";
         Headers = {
             ["Content-Type"] = "application/json";
         };
