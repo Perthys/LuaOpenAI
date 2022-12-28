@@ -293,6 +293,7 @@ end
 
 function OpenAIAPI:CreateModeration()
     local EndPoint = URL.new("moderations");
+    print(EndPoint);
     local Response = self:MakeAuthedRequest({
         Url = EndPoint;
         Method = "POST";
