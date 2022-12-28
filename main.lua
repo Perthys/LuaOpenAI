@@ -1,22 +1,14 @@
 local HttpService = game:GetService("HttpService");
-local Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbberrys/LuaScripts/main/TableDumper.lua'))()
 
 local OpenAI = {
-    BaseURL = "https://api.openai.com/v1/";
+    BaseURL = "https://api.openai.com/v1/%s";
 };
 
-
 local function Merge(Seperator, ...)
-    
     Seperator = Seperator or "/"
-    local Result = "";
+    
     local Strings = {...};
-    
-    for Index, String in ipairs(Strings) do
-        Result = Result..String..Seperator;
-    end
-    
-    return Result
+    return table.concat(Strings, Seperator)
 end
 
 local URL = {} URL.__index = URL;
@@ -48,10 +40,9 @@ function OpenAIAPI:MakeAuthedRequest(Data)
     Data.Headers = Data.Headers or {};
     
     Data.Headers["Authorization"] = ("Bearer %s"):format(self.APIKey);
-    
-    local Response = syn.request(Data)
+    Data.Body = Data.Body and HttpService:JSONEncode(Data.Body)
 
-    return Response
+    return syn.request(Data)
 end
 
 function OpenAIAPI:ListModels()
@@ -65,7 +56,7 @@ function OpenAIAPI:ListModels()
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:RetrieveModel(Model)
@@ -79,7 +70,7 @@ function OpenAIAPI:RetrieveModel(Model)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateCompletion(Body)
@@ -93,7 +84,8 @@ function OpenAIAPI:CreateCompletion(Body)
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+
+    return Response;
 end
 
 function OpenAIAPI:CreateEdit()
@@ -107,7 +99,7 @@ function OpenAIAPI:CreateEdit()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateImage()
@@ -121,7 +113,7 @@ function OpenAIAPI:CreateImage()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateImageEdit()
@@ -143,7 +135,7 @@ function OpenAIAPI:CreateEmbedding()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:ListFiles()
@@ -157,7 +149,7 @@ function OpenAIAPI:ListFiles()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateFile()
@@ -175,7 +167,7 @@ function OpenAIAPI:DeleteFile(File)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:RetrieveFile(File)
@@ -189,7 +181,7 @@ function OpenAIAPI:RetrieveFile(File)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:DownloadFile()
@@ -203,7 +195,7 @@ function OpenAIAPI:DownloadFile()
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateFineTune(Body)
@@ -217,7 +209,7 @@ function OpenAIAPI:CreateFineTune(Body)
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:ListFineTunes(Body)
@@ -231,7 +223,7 @@ function OpenAIAPI:ListFineTunes(Body)
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:ListFineTunes(Model)
@@ -245,7 +237,7 @@ function OpenAIAPI:ListFineTunes(Model)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CancelFineTune(Model)
@@ -259,7 +251,7 @@ function OpenAIAPI:CancelFineTune(Model)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:ListFineTuneEvents(Model)
@@ -273,7 +265,7 @@ function OpenAIAPI:ListFineTuneEvents(Model)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:DeleteModel(Model)
@@ -287,7 +279,7 @@ function OpenAIAPI:DeleteModel(Model)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:CreateModeration()
@@ -301,7 +293,7 @@ function OpenAIAPI:CreateModeration()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAIAPI:ListEngines()
@@ -315,7 +307,7 @@ function OpenAIAPI:ListEngines()
         Body = Body;
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
 
 function OpenAI:RetrieveEngine(Engine)
@@ -329,7 +321,7 @@ function OpenAI:RetrieveEngine(Engine)
         };
     })
 
-    return HttpService:JSONDecode(Response);
+    return Response;
 end
     
 OpenAI.OpenAIAPI = OpenAIAPI
