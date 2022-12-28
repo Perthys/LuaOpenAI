@@ -48,7 +48,9 @@ function OpenAIAPI:MakeAuthedRequest(Data)
     Data.Headers["Authorization"] = ("Bearer %s"):format(self.APIKey);
     Data.Body = Data.Body and HttpService:JSONEncode(Data.Body)
 
-    return syn.request(Data)
+    local Response = syn.request(Data)
+    
+    return Response.StatusCode == 200 and Response.Success and HttpService:JSONDecode(Response.Body) or error (Response.StatusMessage)
 end
 
 function OpenAIAPI:ListModels()
