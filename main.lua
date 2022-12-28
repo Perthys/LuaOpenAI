@@ -20,9 +20,10 @@ Utils.Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbbe
 local URL = {} URL.__index = URL;
 
 function URL.new(...)
-    
     return OpenAI.BaseURL:format(...);
 end
+
+OpenAI.URL = URL;
 
 local Configuration = {} Configuration.__index = Configuration;
 
