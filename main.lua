@@ -15,7 +15,7 @@ local function Merge(Seperator, ...)
 end
 
 Utils.Merge = Merge;
-Utils.Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbberrys/LuaScripts/main/TableDumper.lua'))();
+Utils.Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/PysephWasntAvailable/Roblox-Table-To-String/main/Source.lua'))();
 
 local URL = {} URL.__index = URL;
 
