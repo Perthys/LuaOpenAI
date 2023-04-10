@@ -1,7 +1,7 @@
 # LuaOpenAI
 ```lua
 local OpenAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/LuaOpenAI/main/main.lua'))()
-local Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/strawbberrys/LuaScripts/main/TableDumper.lua'))()
+local Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/table/main/main.lua'))().Dump
 
 local Configuration, API = OpenAI.Configuration, OpenAI.OpenAIAPI
 
