@@ -1,4 +1,6 @@
 # LuaOpenAI
+
+**broken after critical api change**
 ```lua
 local OpenAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/LuaOpenAI/main/main.lua'))()
 local Dump = loadstring(game:HttpGet('https://raw.githubusercontent.com/Perthys/table/main/main.lua'))().Dump
